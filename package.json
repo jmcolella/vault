@@ -1,0 +1,33 @@
+{
+  "name": "vault",
+  "version": "0.0.1",
+  "description": "Financial summary app",
+  "main": "app/index.js",
+  "author": "John Colella <colella.john@gmail.com>",
+  "license": "MIT",
+  "scripts": {
+    "dev": "webpack-dev-server --config ./internals/webpack/base.config.js"
+  },
+  "dependencies": {
+    "@babel/core": "^7.2.2",
+    "@babel/polyfill": "^7.2.5",
+    "accounting": "^0.4.1",
+    "babel-loader": "^8.0.5",
+    "date-fns": "^1.30.1",
+    "express": "^4.16.4",
+    "extract-text-webpack-plugin": "^4.0.0-beta.0",
+    "html-webpack-plugin": "^3.2.0",
+    "lodash": "^4.17.11",
+    "optimize-css-assets-webpack-plugin": "^5.0.1",
+    "policygenius-fannypack": "^0.0.4",
+    "react": "16.8.0-alpha.0",
+    "react-dom": "^16.8.0-alpha.0",
+    "store2": "^2.7.1",
+    "webpack": "^4.28.4",
+    "webpack-dev-server": "^3.1.14"
+  },
+  "devDependencies": {
+    "react-hot-loader": "4.6.0",
+    "webpack-cli": "^3.2.1"
+  }
+}
