@@ -3,9 +3,14 @@ import Transactions from '../Transactions';
 import AccessToken from '../AccessToken';
 import TotalSpent from '../../components/TotalSpent';
 import Income from '../../components/Income';
+import Header from '../../components/Header';
 import CONFIG from '../../../env.json';
 
 function App() {
+  return (
+    <Header />
+  );
+
   return (
     <div>
       <AccessToken
