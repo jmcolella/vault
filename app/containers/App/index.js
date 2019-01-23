@@ -1,14 +1,26 @@
 import React from 'react';
+import { hot } from 'react-hot-loader';
 import Transactions from '../Transactions';
 import AccessToken from '../AccessToken';
 import TotalSpent from '../../components/TotalSpent';
 import Income from '../../components/Income';
 import Header from '../../components/Header';
+import AppLayout from '../../components/AppLayout';
+import ShadowContainer from '../../components/ShadowContainer';
+import Loader from '../../components/Loader';
 import CONFIG from '../../../env.json';
 
 function App() {
   return (
-    <Header />
+    <div>
+      <Header />
+
+      <AppLayout>
+        <ShadowContainer>
+          <Loader />
+        </ShadowContainer>
+      </AppLayout>
+    </div>
   );
 
   return (
@@ -63,4 +75,4 @@ function App() {
   );
 }
 
-export default App;
+export default hot(module)(App);

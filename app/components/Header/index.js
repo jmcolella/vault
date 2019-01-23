@@ -1,9 +1,11 @@
 import React from 'react';
 import styled from 'styled-components';
-import { GREEN } from '../../constants/colors';
+import { GREEN, WHITE } from '../../constants/colors';
+import { MAIN_FONT } from '../../constants/fonts';
 
 const Wrapper = styled.div`
   align-items: center;
+  background-color: ${WHITE};
   border-bottom: 1px solid ${GREEN};
   display: flex;
   height: 60px;
@@ -11,16 +13,18 @@ const Wrapper = styled.div`
   position: fixed;
   top: 0;
   width: 100%;
+  z-index: 1;
 `;
 
 const Title = styled.h1`
   color: ${GREEN};
   font-size: 24px;
+  font-family: ${MAIN_FONT};
 `;
 
 const Header = () => (
   <Wrapper>
-    <Title>Vault</Title>
+    <Title>vault</Title>
   </Wrapper>
 );
 
