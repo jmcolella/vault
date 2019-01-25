@@ -1,0 +1,7 @@
+{
+  "extends": [
+    "policygenius",
+    "policygenius/react",
+    "policygenius/import"
+  ]
+}
