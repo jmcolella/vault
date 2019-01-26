@@ -2,23 +2,25 @@ import React from 'react';
 import Transactions from '../Transactions';
 import CONFIG from '../../../env.json';
 
-// Need to get cap one accound ID
 function AllTransactions(props) {
   const {
     boaAccessToken,
     capOneAccessToken,
+    children,
   } = props;
 
   return (
       <Transactions
         accountId={CONFIG.BOA_CASH_REWARDS_ID}
         accessToken={boaAccessToken}
+        insId="BOA"
       >
         {
           (rewardsProps) => (
             <Transactions
               accountId={CONFIG.CAP_ONE_VENTURE_ID}
               accessToken={capOneAccessToken}
+              insId="CAP_ONE"
             >
               {
                 (ventureProps) => (

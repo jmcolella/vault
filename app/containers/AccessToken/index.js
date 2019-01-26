@@ -28,7 +28,9 @@ function AccessToken(props) {
     setAccessToken(requestedAccessToken);
   }
 
-  const onLinkHandlerSuccess = (public_token) => {
+  const onLinkHandlerSuccess = (public_token, metadata) => {
+    console.log('metadata', metadata);
+
     store.set(publicTokenName, public_token);
 
     setPublicToken(public_token);

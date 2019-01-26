@@ -7,11 +7,10 @@ import Income from '../../components/Income';
 import Header from '../../components/Header';
 import AppLayout from '../../components/AppLayout';
 import ShadowContainer from '../../components/ShadowContainer';
+import TransactionsList from '../../components/TransactionsList';
 import Loader from '../../components/Loader';
 import CONFIG from '../../../env.json';
 
-// There should be a top level container that handles loading all Transactions
-// And passes them to the correct TransactionsList
 function App() {
   return (
     <div>
@@ -50,28 +49,11 @@ function App() {
                                         transactions={[...transactions.boaTransactions, ...transactions.capOneTransactions]}
                                         income={income}
                                       />
+
+                                      <TransactionsList
+                                        transactions={[...transactions.boaTransactions, ...transactions.capOneTransactions]}
+                                      />
                                     </div>
-
-
-                                    <h2 style={{ color: 'red' }}>Rewards</h2>
-                                    {
-                                      transactions.boaTransactions.map((trans, idx) => (
-                                        <div key={idx}>
-                                          <h1>{trans.name}</h1>
-                                          <p>{trans.amount}</p>
-                                        </div>
-                                      ))
-                                    }
-
-                                    <h2 style={{ color: 'blue' }}>Venture</h2>
-                                    {
-                                      transactions.capOneTransactions.map((trans, idx) => (
-                                        <div key={idx}>
-                                          <h1>{trans.name}</h1>
-                                          <p>{trans.amount}</p>
-                                        </div>
-                                      ))
-                                    }
                                   </div>
                                 )
                               }

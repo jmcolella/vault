@@ -6,6 +6,7 @@ function Transactions(props) {
     accessToken,
     accountId,
     children,
+    insId,
   } = props;
 
   const [transactions, setTransactions] = useState([]);
@@ -14,7 +15,13 @@ function Transactions(props) {
     if (transactions.length === 0) {
       getTransactionsByAccount(accessToken, accountId)
         .then((requestedTransactions) => {
-          setTransactions(requestedTransactions);
+
+          const transactionsWithIns = requestedTransactions.map((trans) => ({
+            ...trans,
+            insId: insId,
+          }));
+
+          setTransactions(transactionsWithIns);
         });
     }
   }, [transactions]);

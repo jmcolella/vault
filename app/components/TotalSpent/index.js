@@ -8,9 +8,11 @@ function TotalSpent(props) {
     income,
   } = props;
 
-  const totalSpent = reduce(transactions, (sum, transaction) => (
-    sum += transaction.amount
-  ), 0);
+  const totalSpent = reduce(transactions, (sum, transaction) => {
+    if (transaction.amount < 0) { return sum; }
+
+    return sum += transaction.amount
+  }, 0);
 
   const RENT = 1130;
 
