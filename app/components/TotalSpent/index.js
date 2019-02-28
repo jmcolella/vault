@@ -22,10 +22,13 @@ function TotalSpent(props) {
       <p>{ income }</p>
 
       <h1>Total Spent: </h1>
-      <p>{ accounting.format(totalSpent) }</p>
+      <p>{ accounting.formatMoney(totalSpent) }</p>
+
+      <h1>Rent: </h1>
+      <p>{ RENT }</p>
 
       <h1>Amount left</h1>
-      <p>{ accounting.format(income - totalSpent - RENT) }</p>
+      <p>{ accounting.formatMoney(income - totalSpent - RENT) }</p>
     </div>
   );
 }

@@ -19,11 +19,13 @@ function App() {
       <AppLayout>
         <AccessToken
           publicTokenName="boaPublicToken"
+          accessTokenName="boaAccessToken"
         >
           {
             (boaAccessToken) => (
               <AccessToken
                 publicTokenName="capOnePublicToken"
+                accessTokenName="capOneAccessToken"
               >
                 {
                   (capOneAccessToken) => (
