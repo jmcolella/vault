@@ -1,13 +1,14 @@
 import React from 'react';
 import { hot } from 'react-hot-loader';
 import AllTransactions from '../AllTransactions';
-import AccessToken from '../AccessToken';
+import AccessTokens from '../AccessTokens';
 import TotalSpent from '../../components/TotalSpent';
 import Income from '../../components/Income';
 import Header from '../../components/Header';
 import AppLayout from '../../components/AppLayout';
 import ShadowContainer from '../../components/ShadowContainer';
 import TransactionsList from '../../components/TransactionsList';
+import PlaidLinkButton from '../../components/PlaidLinkButton';
 import Loader from '../../components/Loader';
 import CONFIG from '../../../env.json';
 
@@ -17,62 +18,94 @@ function App() {
       <Header />
 
       <AppLayout>
-        <AccessToken
-          publicTokenName="boaPublicToken"
-          accessTokenName="boaAccessToken"
-        >
+        <AccessTokens>
           {
-            (boaAccessToken) => (
-              <AccessToken
-                publicTokenName="capOnePublicToken"
-                accessTokenName="capOneAccessToken"
-              >
-                {
-                  (capOneAccessToken) => (
-                    <Income accessToken={boaAccessToken.accessToken}>
-                      {
-                        ({ income }) => (
-                          <AllTransactions
-                            boaAccessToken={boaAccessToken.accessToken}
-                            capOneAccessToken={capOneAccessToken.accessToken}
-                          >
-                            {
-                              (transactions) => {
-                                if (transactions.loading) {
-                                  return (
-                                    <Loader />
-                                  );
-                                }
+            (accessTokenData) => {
+              if (accessTokenData.accessTokens.length === 0) {
+                return (
+                  <div>
+                    <div>Please connect an account...</div>
 
-                                return (
-                                  <div>
-                                    <div>
-                                      <TotalSpent
-                                        transactions={[...transactions.boaTransactions, ...transactions.capOneTransactions]}
-                                        income={income}
-                                      />
+                    <PlaidLinkButton
+                      {...accessTokenData}
+                    />
+                  </div>
+                );
+              }
 
-                                      <TransactionsList
-                                        transactions={[...transactions.boaTransactions, ...transactions.capOneTransactions]}
-                                      />
-                                    </div>
-                                  </div>
-                                )
-                              }
-                            }
-                          </AllTransactions>
-                        )
-                      }
-                    </Income>
-                  )
-                }
-              </AccessToken>
-            )
+              return (
+                <PlaidLinkButton
+                  {...accessTokenData}
+                />
+              );
+            }
           }
-        </AccessToken>
+        </AccessTokens>
       </AppLayout>
     </div>
   );
+
+  // return (
+    // <div>
+      // <Header />
+
+      // <AppLayout>
+        // <AccessToken
+          // publicTokenName="boaPublicToken"
+          // accessTokenName="boaAccessToken"
+        // >
+          // {
+            // (boaAccessToken) => (
+              // <AccessToken
+                // publicTokenName="capOnePublicToken"
+                // accessTokenName="capOneAccessToken"
+              // >
+                // {
+                  // (capOneAccessToken) => (
+                    // <Income accessToken={boaAccessToken.accessToken}>
+                      // {
+                        // ({ income }) => (
+                          // <AllTransactions
+                            // boaAccessToken={boaAccessToken.accessToken}
+                            // capOneAccessToken={capOneAccessToken.accessToken}
+                          // >
+                            // {
+                              // (transactions) => {
+                                // if (transactions.loading) {
+                                  // return (
+                                    // <Loader />
+                                  // );
+                                // }
+
+                                // return (
+                                  // <div>
+                                    // <div>
+                                      // <TotalSpent
+                                        // transactions={[...transactions.boaTransactions, ...transactions.capOneTransactions]}
+                                        // income={income}
+                                      // />
+
+                                      // <TransactionsList
+                                        // transactions={[...transactions.boaTransactions, ...transactions.capOneTransactions]}
+                                      // />
+                                    // </div>
+                                  // </div>
+                                // )
+                              // }
+                            // }
+                          // </AllTransactions>
+                        // )
+                      // }
+                    // </Income>
+                  // )
+                // }
+              // </AccessToken>
+            // )
+          // }
+        // </AccessToken>
+      // </AppLayout>
+    // </div>
+  // );
 }
 
 export default hot(module)(App);

@@ -12,16 +12,22 @@ export const linkHandler = (onSuccess) => (
   })
 )
 
-export const getAccessToken = async (publicToken) => {
+export const getAccessTokens = async () => {
+  const result = await fetch('http://localhost:3000/access_tokens', {
+    method: 'GET',
+  });
+
+  return result.json().then((accessTokens) => accessTokens);
+};
+
+export const getAccessToken = async (data) => {
   const result = await fetch('http://localhost:3000/access_token', {
     method: 'POST',
     headers: {
       Accept: 'application/json',
       'Content-Type': 'application/json',
     },
-    body: JSON.stringify({
-      publicToken,
-    }),
+    body: JSON.stringify(data),
   });
 
   return result.json().then((accessToken) => accessToken.access_token);
