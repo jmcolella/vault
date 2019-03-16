@@ -5,11 +5,12 @@ import { getAccessToken, linkHandler } from '../../util/plaidUtil';
 function AccessToken(props) {
   const {
     publicTokenName,
+    accessTokenName,
     children,
   } = props;
 
   const [publicToken, setPublicToken] = useState(store.get(publicTokenName));
-  const [accessToken, setAccessToken] = useState('');
+  const [accessToken, setAccessToken] = useState(store.get(accessTokenName));
 
   useEffect(() => {
     if (!accessToken) {
@@ -25,10 +26,14 @@ function AccessToken(props) {
       return;
     }
 
+    store.set(accessTokenName, requestedAccessToken);
+
     setAccessToken(requestedAccessToken);
   }
 
-  const onLinkHandlerSuccess = (public_token) => {
+  const onLinkHandlerSuccess = (public_token, metadata) => {
+    console.log('metadata', metadata);
+
     store.set(publicTokenName, public_token);
 
     setPublicToken(public_token);
